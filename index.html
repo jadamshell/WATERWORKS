@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WaterWorks Control System</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="screen-overlay">
+      <div class="scanline"></div>
+      <div class="flicker"></div>
+    </div>
+    
+    <div class="container">
+      <div class="dashboard-header">
+        <h1 class="dashboard-title">WaterWorks Control System</h1>
+      </div>
+      
+      <div class="control-panel">
+        <div class="panel-header">
+          <h2 class="panel-title">Simulation Parameters</h2>
+        </div>
+        
+        <!-- Slider for setting the initial quality -->
+        <div class="slider-container">
+          <label for="qualitySlider">Treatment Plant Chlorine Level (1.0-4.0 mg/L)</label>
+          <div class="slider-controls">
+            <input type="range" id="qualitySlider" min="1.0" max="4.0" step="0.2" value="3.0" class="filled-slider">
+            <span id="qualityValue" class="slider-value">3.0</span>
+          </div>
+        </div>
+        
+        <!-- Slider for water cost -->
+        <div class="slider-container">
+          <label for="costSlider">Cost of Water ($10-80 per 4,000 Gallons)</label>
+          <div class="slider-controls">
+            <input type="range" id="costSlider" min="10" max="80" step="5" value="65" class="filled-slider">
+            <span id="costValue" class="slider-value">65</span>
+          </div>
+        </div>
+        
+        <button id="runBtn" class="cybr-btn">Run Simulation</button>
+        <div id="status">Ready</div>
+
+        <!-- Simulation Progress Bar -->
+        <div id="simProgressContainer">
+          <label>
+            <span>Simulation Progress</span>
+            <span id="progressPercentage">0%</span>
+          </label>
+          <progress id="simProgress" value="0" max="100"></progress>
+        </div>
+      </div>
+
+      <!-- Toggle Panel -->
+      <div id="toggleContainer">
+        <h2>Node Visibility Controls</h2>
+        <div id="nodeToggles"></div>
+      </div>
+
+      <!-- Tab buttons -->
+      <div class="tabs">
+        <button id="headTabBtn" class="active">Head Charts</button>
+        <button id="pressureTabBtn">Pressure Charts</button>
+        <button id="demandTabBtn">Demand Charts</button>
+        <button id="qualityTabBtn">Quality Charts</button>
+        <button id="tankTabBtn">Tank Level</button>
+      </div>
+
+      <!-- Dashboard containers for each chart type -->
+      <div id="headDashboard" class="chart-grid"></div>
+      <div id="pressureDashboard" class="chart-grid" style="display: none;"></div>
+      <div id="demandDashboard" class="chart-grid" style="display: none;"></div>
+      <div id="qualityDashboard" class="chart-grid" style="display: none;"></div>
+      <div id="tankDashboard" class="chart-grid" style="display: none;"></div>
+    </div>
+    
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
